@@ -5,6 +5,7 @@ import 'package:unityapp/screens/splash.dart';
 import 'package:firebase_core/firebase_core.dart';
 //import 'package:provider/provider.dart';
 import 'package:unityapp/services/authenticate.dart';
+import 'package:unityapp/screens/home/form.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
     return StreamProvider<UserModel>.value(
         value: Auth().user,
         child: MaterialApp(
-          home: Splash(),
+          home: FormParticipant(),
         ));
   }
 }
