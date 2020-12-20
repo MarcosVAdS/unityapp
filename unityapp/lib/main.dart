@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
     return StreamProvider<UserModel>.value(
         value: Auth().user,
         child: MaterialApp(
-          home: FormParticipant(),
+          home: Splash(),
         ));
   }
 }

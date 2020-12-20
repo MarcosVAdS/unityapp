@@ -11,9 +11,11 @@ class SingIn extends StatefulWidget {
 
 class _SingInState extends State<SingIn> {
   final Auth _auth = Auth();
+  final _formKey = GlobalKey<FormState>();
 
   String email = '';
   String password = '';
+  String error = '';
 
   @override
   Widget build(BuildContext context) {
@@ -36,12 +38,15 @@ class _SingInState extends State<SingIn> {
       body: Container(
         padding: EdgeInsets.symmetric(vertical: 50, horizontal: 50),
         child: Form(
+          key: _formKey,
           child: Column(
             children: <Widget>[
               Image(image: AssetImage('assets/unitylogo.png')),
               SizedBox(height: 20),
               TextFormField(
-                decoration: InputDecoration(labelText: 'Enter your name'),
+                validator: (value) =>
+                    value.isEmpty ? 'fill in the email field' : null,
+                decoration: InputDecoration(labelText: 'Enter your email'),
                 onChanged: (value) {
                   setState(() {
                     email = value;
@@ -50,6 +55,8 @@ class _SingInState extends State<SingIn> {
               ),
               SizedBox(height: 20),
               TextFormField(
+                validator: (value) =>
+                    value.length < 8 ? 'login or password incorrect' : null,
                 decoration: InputDecoration(labelText: 'Enter your password'),
                 obscureText: true,
                 onChanged: (value) {
@@ -66,9 +73,26 @@ class _SingInState extends State<SingIn> {
                   ),
                   color: Colors.purple,
                   onPressed: () async {
-                    print(email);
-                    print(password);
-                  })
+                    if (_formKey.currentState.validate()) {
+                      dynamic result = await _auth.singInEmail(email, password);
+                      if (result == null) {
+                        setState(() {
+                          error = 'please, enter correct data';
+                        });
+                      }
+                    }
+                  }),
+              SizedBox(height: 12.0),
+              Text(error, style: TextStyle(color: Colors.red, fontSize: 14.0)),
+              RaisedButton(
+                  child: Text(
+                    'SingIn as Anonimous person!',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  color: Colors.grey,
+                  onPressed: () async {
+                    _auth.singInAnonimous();
+                  }),
             ],
           ),
         ),

@@ -5,7 +5,6 @@ class Database {
 
   Database({this.uid});
 
-  //collection reference
   final CollectionReference participantsColection =
       FirebaseFirestore.instance.collection('participants');
 

@@ -15,6 +15,17 @@ class Auth {
   }
 
   //register method
+  Future registerWithEmail(String email, String password) async {
+    try {
+      UserCredential result = await _auth.createUserWithEmailAndPassword(
+          email: email, password: password);
+      User user = result.user;
+      return _user(user);
+    } catch (error) {
+      print(error.toString());
+      return null;
+    }
+  }
 
   //sing in method like a anonimous person
   Future singInAnonimous() async {
@@ -29,6 +40,21 @@ class Auth {
   }
 
   //sing in method with email and password
+  Future singInEmail(String email, String password) async {
+    try {
+      UserCredential result = await _auth.signInWithEmailAndPassword(
+          email: email, password: password);
+      User user = result.user;
+      return _user(user);
+    } catch (error) {
+      print(error.toString());
+      return null;
+    }
+  }
+
+  //sing in whit google's account
+
+  Future singInGoogle() {}
 
   //sing out
   Future singOut() async {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:unityapp/services/authenticate.dart';
 
 class FormParticipant extends StatefulWidget {
   @override
@@ -6,6 +7,7 @@ class FormParticipant extends StatefulWidget {
 }
 
 class _FormParticipantState extends State<FormParticipant> {
+  final Auth _auth = Auth();
   String email = '';
   String password = '';
   String name = '';
@@ -16,19 +18,8 @@ class _FormParticipantState extends State<FormParticipant> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.purple,
-        elevation: 0.0,
-        title: Text('Create a new participant!'),
-        actions: <Widget>[
-          FlatButton.icon(
-            onPressed: () {},
-            icon: Icon(Icons.person),
-            label: Text('Save!'),
-          )
-        ],
-      ),
       body: Container(
         padding: EdgeInsets.symmetric(vertical: 50, horizontal: 50),
         child: Form(
@@ -36,7 +27,7 @@ class _FormParticipantState extends State<FormParticipant> {
             children: <Widget>[
               SizedBox(height: 20),
               TextFormField(
-                decoration: InputDecoration(labelText: 'Enter your name'),
+                decoration: InputDecoration(labelText: 'Enter name'),
                 onChanged: (value) {
                   setState(() {
                     name = value;
@@ -45,7 +36,7 @@ class _FormParticipantState extends State<FormParticipant> {
               ),
               SizedBox(height: 20),
               TextFormField(
-                decoration: InputDecoration(labelText: 'Enter your email'),
+                decoration: InputDecoration(labelText: 'Enter email'),
                 onChanged: (value) {
                   setState(() {
                     email = value;
@@ -54,7 +45,7 @@ class _FormParticipantState extends State<FormParticipant> {
               ),
               SizedBox(height: 20),
               TextFormField(
-                decoration: InputDecoration(labelText: 'Enter your password'),
+                decoration: InputDecoration(labelText: 'Enter password'),
                 obscureText: true,
                 onChanged: (value) {
                   setState(() {
@@ -64,7 +55,7 @@ class _FormParticipantState extends State<FormParticipant> {
               ),
               SizedBox(height: 20),
               TextFormField(
-                decoration: InputDecoration(labelText: 'Enter your login'),
+                decoration: InputDecoration(labelText: 'Enter login'),
                 obscureText: true,
                 onChanged: (value) {
                   setState(() {
@@ -74,7 +65,7 @@ class _FormParticipantState extends State<FormParticipant> {
               ),
               SizedBox(height: 20),
               TextField(
-                decoration: InputDecoration(labelText: 'Enter your age'),
+                decoration: InputDecoration(labelText: 'Enter age'),
                 keyboardType: TextInputType.number,
                 obscureText: true,
                 onChanged: (value) {
