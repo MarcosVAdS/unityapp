@@ -1,22 +1,25 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:random_string/random_string.dart';
 
 class Database {
+  String key = randomString(28);
   final String uid;
 
   Database({this.uid});
 
-  final CollectionReference participantsColection =
-      FirebaseFirestore.instance.collection('participants');
+  final CollectionReference personColection =
+      FirebaseFirestore.instance.collection('user');
 
-  Future createParticipant(String name, String email, int age, String login,
-      String password, bool active) async {
-    return await participantsColection.doc(uid).set({
+  Future createParticipant(
+      String name, String email, int age, String login, String bio) async {
+    return await personColection.doc(key).set({
       'name': name,
       'email': email,
       'age': age,
       'login': login,
-      'password': password,
-      'active': active
+      'bio': bio,
     });
   }
+
+  Future getParticipants() {}
 }

@@ -35,7 +35,7 @@ class _RegisterState extends State<Register> {
           )
         ],
       ),
-      body: Container(
+      body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(vertical: 50, horizontal: 50),
         child: Form(
           key: _formKey,

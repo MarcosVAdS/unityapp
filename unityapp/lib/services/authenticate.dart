@@ -1,9 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:unityapp/models/user.dart';
+import 'package:localstorage/localstorage.dart';
 
 class Auth {
   //_ beacause auth is private
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final LocalStorage storage = new LocalStorage('user');
 
   UserModel _user(User user) {
     return user != null ? UserModel(uid: user.uid) : null;
@@ -45,6 +47,8 @@ class Auth {
       UserCredential result = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
       User user = result.user;
+      storage.setItem('user', user.uid);
+      print(user.uid);
       return _user(user);
     } catch (error) {
       print(error.toString());

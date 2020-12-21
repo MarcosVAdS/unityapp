@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:unityapp/services/authenticate.dart';
+import 'package:unityapp/services/database.dart';
+import 'package:flutter/services.dart';
 
 class FormParticipant extends StatefulWidget {
   @override
@@ -7,21 +9,21 @@ class FormParticipant extends StatefulWidget {
 }
 
 class _FormParticipantState extends State<FormParticipant> {
-  final Auth _auth = Auth();
-  String email = '';
-  String password = '';
+  final user = Auth().storage.getItem('user');
+
   String name = '';
+  String email = '';
   String login = '';
-  String age = '';
-  bool active = false;
+  String bio = '';
+  int age;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomPadding: false,
       backgroundColor: Colors.white,
-      body: Container(
-        padding: EdgeInsets.symmetric(vertical: 50, horizontal: 50),
+      body: SingleChildScrollView(
+        padding: EdgeInsets.symmetric(horizontal: 50),
         child: Form(
           child: Column(
             children: <Widget>[
@@ -45,18 +47,7 @@ class _FormParticipantState extends State<FormParticipant> {
               ),
               SizedBox(height: 20),
               TextFormField(
-                decoration: InputDecoration(labelText: 'Enter password'),
-                obscureText: true,
-                onChanged: (value) {
-                  setState(() {
-                    password = value;
-                  });
-                },
-              ),
-              SizedBox(height: 20),
-              TextFormField(
                 decoration: InputDecoration(labelText: 'Enter login'),
-                obscureText: true,
                 onChanged: (value) {
                   setState(() {
                     login = value;
@@ -67,23 +58,32 @@ class _FormParticipantState extends State<FormParticipant> {
               TextField(
                 decoration: InputDecoration(labelText: 'Enter age'),
                 keyboardType: TextInputType.number,
-                obscureText: true,
+                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                 onChanged: (value) {
                   setState(() {
-                    age = value;
+                    age = int.parse(value);
+                  });
+                },
+              ),
+              SizedBox(height: 20),
+              TextFormField(
+                decoration: InputDecoration(labelText: 'Describe you'),
+                onChanged: (value) {
+                  setState(() {
+                    bio = value;
                   });
                 },
               ),
               SizedBox(height: 20),
               RaisedButton(
                   child: Text(
-                    'Register!',
+                    'Save!',
                     style: TextStyle(color: Colors.white),
                   ),
                   color: Colors.purple,
                   onPressed: () async {
-                    print(email);
-                    print(password);
+                    await Database(uid: user)
+                        .createParticipant(name, email, age, login, bio);
                   })
             ],
           ),
