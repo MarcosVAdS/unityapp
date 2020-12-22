@@ -48,7 +48,6 @@ class Auth {
           email: email, password: password);
       User user = result.user;
       storage.setItem('user', user.uid);
-      print(user.uid);
       return _user(user);
     } catch (error) {
       print(error.toString());

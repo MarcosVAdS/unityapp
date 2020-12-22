@@ -3,8 +3,8 @@ import 'package:random_string/random_string.dart';
 
 class Database {
   String key = randomString(28);
-  final String uid;
 
+  final String uid;
   Database({this.uid});
 
   final CollectionReference personColection =
@@ -21,5 +21,7 @@ class Database {
     });
   }
 
-  Future getParticipants() {}
+  Stream<QuerySnapshot> get users {
+    return personColection.snapshots();
+  }
 }

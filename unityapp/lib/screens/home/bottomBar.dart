@@ -3,20 +3,20 @@ import 'package:unityapp/screens/home/form.dart';
 import 'package:unityapp/screens/home/list.dart';
 import 'package:unityapp/services/authenticate.dart';
 
-class MyStatefulWidget extends StatefulWidget {
-  MyStatefulWidget({Key key}) : super(key: key);
+class BottomNav extends StatefulWidget {
+  BottomNav({Key key}) : super(key: key);
 
   @override
-  _MyStatefulWidgetState createState() => _MyStatefulWidgetState();
+  _MyStateBottomNav createState() => _MyStateBottomNav();
 }
 
 /// This is the private State class that goes with MyStatefulWidget.
-class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+class _MyStateBottomNav extends State<BottomNav> {
   final Auth _auth = Auth();
   int _selectedIndex = 0;
   static List<Widget> _widgetOptions = <Widget>[
-    FormParticipant(),
     ListParticipant(),
+    FormParticipant(),
   ];
 
   void _onItemTapped(int index) {
