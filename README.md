@@ -1,5 +1,6 @@
 # unityapp
-Aplicativo desenvolvido para o processo seletivo da empresa UnityGroup no Pará
+Aplicativo desenvolvido para o processo seletivo da empresa UnityGroup no Pará. \n
+O aplicativo usa o serviço do Firebase como backend e o framework Flutter para desenvolvimento do aplicativo Android.
 
 # Para ultilizar o app, é necessário ter um emulador Android e Flutter instalados.
 ### Para instalar o Flutter siga o tutorial disponível em: <https://flutter.dev/docs/get-started/install>
