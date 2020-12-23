@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:unityapp/services/authenticate.dart';
 import 'package:unityapp/services/database.dart';
 import 'package:flutter/services.dart';
+import 'package:checkbox_formfield/checkbox_formfield.dart';
 
 class FormParticipant extends StatefulWidget {
   @override
@@ -16,6 +17,7 @@ class _FormParticipantState extends State<FormParticipant> {
   String login = '';
   String bio = '';
   int age;
+  bool status = false;
 
   @override
   Widget build(BuildContext context) {
@@ -74,6 +76,12 @@ class _FormParticipantState extends State<FormParticipant> {
                   });
                 },
               ),
+              CheckboxListTileFormField(
+                title: Text('Im interested on a dating!'),
+                onSaved: (bool value) {
+                  status = value;
+                },
+              ),
               SizedBox(height: 20),
               RaisedButton(
                   child: Text(
@@ -82,8 +90,8 @@ class _FormParticipantState extends State<FormParticipant> {
                   ),
                   color: Colors.purple,
                   onPressed: () async {
-                    await Database(uid: user)
-                        .createParticipant(name, email, age, login, bio);
+                    await Database(uid: user).createParticipant(
+                        name, email, age, login, bio, status);
                   })
             ],
           ),

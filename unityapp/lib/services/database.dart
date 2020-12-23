@@ -10,14 +10,15 @@ class Database {
   final CollectionReference personColection =
       FirebaseFirestore.instance.collection('user');
 
-  Future createParticipant(
-      String name, String email, int age, String login, String bio) async {
+  Future createParticipant(String name, String email, int age, String login,
+      String bio, bool status) async {
     return await personColection.doc(key).set({
       'name': name,
       'email': email,
       'age': age,
       'login': login,
       'bio': bio,
+      'status': status,
     });
   }
 
