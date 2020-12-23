@@ -14,4 +14,4 @@ flutter run
 
 ![List Screen](./img/list.jpeg)
 
-![Form Screen](./form.jpeg)
+![Form Screen](./img/form.jpeg)
