@@ -7,7 +7,7 @@ O aplicativo usa o serviço do Firebase como backend e o framework Flutter para 
 ### Para instalar um emulador Android siga o tutorial disponível em: <https://developer.android.com/studio/run/emulator>
 
 Com ele rodando, dentro do repositório do projeto vá para ~/unityapp/unityapp/
-e execute:
+e execute: <br/>
 ```flutter run```
 
 ### Imagens do app
