@@ -56,7 +56,6 @@ class Auth {
   }
 
   //sing in whit google's account
-
   Future singInGoogle() {}
 
   //sing out
