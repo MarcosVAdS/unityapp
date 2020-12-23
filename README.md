@@ -8,3 +8,10 @@ Aplicativo desenvolvido para o processo seletivo da empresa UnityGroup no Pará
 Com ele rodando, dentro do repositório do projeto vá para ~/unityapp/unityapp/
 e execute:
 flutter run
+
+### Imagens do app
+![Login Screen](./img/login.jpeg)
+
+![List Screen](./img/list.jpeg)
+
+![Form Screen](./form.jpeg)
