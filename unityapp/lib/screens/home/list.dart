@@ -18,9 +18,10 @@ class _ListParticipantState extends State<ListParticipant> {
     } else {
       return ListView.builder(
           itemCount: usersList.docs.length,
+          //scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) {
             DocumentSnapshot user = usersList.docs[index];
-
+            
             return Padding(
               padding: EdgeInsets.only(top: 8),
               child: Card(
@@ -34,6 +35,7 @@ class _ListParticipantState extends State<ListParticipant> {
               ),
             );
           });
+          }
     }
   }
 
@@ -48,4 +50,5 @@ class _ListParticipantState extends State<ListParticipant> {
       },
     );
   }
-}
+
+            

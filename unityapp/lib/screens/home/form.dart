@@ -11,6 +11,7 @@ class FormParticipant extends StatefulWidget {
 
 class _FormParticipantState extends State<FormParticipant> {
   final user = Auth().storage.getItem('user');
+  final _formKey = new GlobalKey<FormState>();
 
   String name = '';
   String email = '';
@@ -92,11 +93,24 @@ class _FormParticipantState extends State<FormParticipant> {
                   onPressed: () async {
                     await Database(uid: user).createParticipant(
                         name, email, age, login, bio, status);
-                  })
+                        showResult(context);
+                      }
+                  )
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Future<void> showResult(BuildContext context) {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Saved!'),
+        );
+      },
     );
   }
 }

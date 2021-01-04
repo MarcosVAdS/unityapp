@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:unityapp/services/authenticate.dart';
+import 'package:unityapp/screens/loading.dart';
 
 class SingIn extends StatefulWidget {
   final Function changeView;
@@ -12,6 +13,7 @@ class SingIn extends StatefulWidget {
 class _SingInState extends State<SingIn> {
   final Auth _auth = Auth();
   final _formKey = GlobalKey<FormState>();
+  bool loading = false;
 
   String email = '';
   String password = '';
@@ -19,7 +21,12 @@ class _SingInState extends State<SingIn> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    if(loading == true){
+      print(loading);
+      return Loading();
+    }else{
+      print(loading);
+      return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.purple,
@@ -74,10 +81,12 @@ class _SingInState extends State<SingIn> {
                   color: Colors.purple,
                   onPressed: () async {
                     if (_formKey.currentState.validate()) {
+                      setState(() => loading = true);
                       dynamic result = await _auth.singInEmail(email, password);
                       if (result == null) {
                         setState(() {
                           error = 'please, enter correct data';
+                          loading = false;
                         });
                       }
                     }
@@ -98,5 +107,6 @@ class _SingInState extends State<SingIn> {
         ),
       ),
     );
+    }
   }
 }
